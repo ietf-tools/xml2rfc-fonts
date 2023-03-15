@@ -1,0 +1,34 @@
+name: Download Noto fonts
+
+on:
+  workflow_dispatch:
+
+jobs:
+  clone_and_commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Clone noto fonts repository
+        run: |
+          git clone https://github.com/notofonts/notofonts.github.io.git
+
+      - name: Recreate noto fonts directory
+        run: |
+          rm -rf noto
+          mkdir noto
+
+      - name: Copy license file and unhinted fonts
+        run: |
+          cp notofonts.github.io/fonts/LICENSE noto/
+          cp notofonts.github.io/fonts/*/unhinted/ttf/*.ttf noto/
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add noto
+          git commit -m "chore: Update noto fonts"
+          git push
+
