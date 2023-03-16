@@ -28,10 +28,12 @@ jobs:
         id: git-check
         run: |
           git add noto
-          git status --porcelain || echo "::set-output name=has_changes::true"
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "HAS_CHANGES=true" >> $GITHUB_ENV
+          fi
 
       - name: Commit changes
-        if: steps.git-check.outputs.has_changes == 'true'
+        if: env.HAS_CHANGES == 'true'
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
