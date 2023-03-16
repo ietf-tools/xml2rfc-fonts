@@ -1,0 +1,45 @@
+name: Download Roboto Mono fonts
+
+on:
+  workflow_dispatch:
+
+jobs:
+  downlaod_and_commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+
+      - name: Recreate noto fonts directory
+        run: |
+          rm -rf roboto_mono
+          mkdir roboto_mono
+
+      - name: Download Roboto Mono font
+        run: |
+          curl -o Roboto_Mono.zip https://fonts.google.com/download?family=Roboto+Mono
+          unzip -q Roboto_Mono.zip -d Roboto_Mono
+
+      - name: Copy license file and unhinted fonts
+        run: |
+          cp Roboto_Mono/LICENSE.txt roboto_mono/
+          cp Roboto_Mono/static/*.ttf roboto_mono/
+          rm -rf Roboto_Mono.zip Roboto_Mono
+
+      - name: Check for changes
+        id: git-check
+        run: |
+          git add roboto_mono
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "HAS_CHANGES=true" >> $GITHUB_ENV
+          fi
+
+      - name: Commit changes
+        if: env.HAS_CHANGES == 'true'
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git commit -m "chore: Update roboto mono fonts"
+          git push
+
