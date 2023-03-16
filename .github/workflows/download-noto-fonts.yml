@@ -24,7 +24,13 @@ jobs:
           cp notofonts.github.io/fonts/LICENSE noto/
           cp notofonts.github.io/fonts/*/unhinted/ttf/*.ttf noto/
 
+      - name: Check for changes
+        id: git-check
+        run: |
+          git diff --quiet || echo "::set-output name=has_changes::true"
+
       - name: Commit changes
+        if: steps.git-check.outputs.has_changes == 'true'
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
