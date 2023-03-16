@@ -27,6 +27,7 @@ jobs:
       - name: Check for changes
         id: git-check
         run: |
+          git add noto
           git diff --quiet || echo "::set-output name=has_changes::true"
 
       - name: Commit changes
@@ -34,7 +35,6 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git add noto
           git commit -m "chore: Update noto fonts"
           git push
 
