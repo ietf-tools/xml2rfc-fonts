@@ -23,6 +23,7 @@ jobs:
         run: |
           cp notofonts.github.io/fonts/LICENSE noto/
           cp notofonts.github.io/fonts/*/unhinted/ttf/*.ttf noto/
+          rm -rf notofonts.github.io
 
       - name: Check for changes
         id: git-check
