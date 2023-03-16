@@ -28,7 +28,7 @@ jobs:
         id: git-check
         run: |
           git add noto
-          git diff --quiet || echo "::set-output name=has_changes::true"
+          git status --porcelain || echo "::set-output name=has_changes::true"
 
       - name: Commit changes
         if: steps.git-check.outputs.has_changes == 'true'
