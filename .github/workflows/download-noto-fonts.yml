@@ -25,6 +25,20 @@ jobs:
           cp notofonts.github.io/fonts/*/unhinted/ttf/*.ttf noto/
           rm -rf notofonts.github.io
 
+      - name: Clone noto-cjk fonts repository
+        run: |
+          git clone https://github.com/notofonts/noto-cjk.git
+
+      - name: Copy license file and variable TTF fonts
+        run: |
+          cp noto-cjk/Serif/LICENSE noto/LICENSE-noto-cjk-serif
+          cp noto-cjk/Serif/Variable/TTF/*.ttf noto/
+          cp noto-cjk/Serif/Variable/TTF/Subset/*.ttf noto/
+          cp noto-cjk/Sans/LICENSE noto/LICENSE-noto-cjk-sans
+          cp noto-cjk/Sans/Variable/TTF/*.ttf noto/
+          cp noto-cjk/Sans/Variable/TTF/Subset/*.ttf noto/
+          rm -rf noto-cjk
+
       - name: Check for changes
         id: git-check
         run: |
