@@ -12,7 +12,7 @@ jobs:
 
       - name: Clone noto fonts repository
         run: |
-          git clone https://github.com/notofonts/notofonts.github.io.git
+          git clone --depth 1 https://github.com/notofonts/notofonts.github.io.git
 
       - name: Recreate noto fonts directory
         run: |
@@ -27,7 +27,7 @@ jobs:
 
       - name: Clone noto-cjk fonts repository
         run: |
-          git clone https://github.com/notofonts/noto-cjk.git
+          git clone --depth 1 https://github.com/notofonts/noto-cjk.git
 
       - name: Copy license file and noto-cjk variable TTF fonts
         run: |
