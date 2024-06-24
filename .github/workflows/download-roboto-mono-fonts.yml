@@ -16,16 +16,15 @@ jobs:
           rm -rf roboto_mono
           mkdir roboto_mono
 
-      - name: Download Roboto Mono font
+      - name: Clone RobotoMono fonts repository
         run: |
-          curl -o Roboto_Mono.zip https://fonts.google.com/download?family=Roboto+Mono
-          unzip -q Roboto_Mono.zip -d Roboto_Mono
+          git clone --depth 1 https://github.com/googlefonts/RobotoMono.git
 
-      - name: Copy license file and unhinted fonts
+      - name: Copy license file and RobotoMono TTF fonts
         run: |
-          cp Roboto_Mono/LICENSE.txt roboto_mono/
-          cp Roboto_Mono/static/*.ttf roboto_mono/
-          rm -rf Roboto_Mono.zip Roboto_Mono
+          cp RobotoMono/fonts/ttf/*.ttf roboto_mono/
+          cp RobotoMono/LICENSE.txt roboto_mono/
+          rm -rf RobotoMono
 
       - name: Check for changes
         id: git-check
