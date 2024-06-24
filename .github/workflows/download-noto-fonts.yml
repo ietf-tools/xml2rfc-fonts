@@ -29,14 +29,10 @@ jobs:
         run: |
           git clone --depth 1 https://github.com/notofonts/noto-cjk.git
 
-      - name: Copy license file and noto-cjk variable TTF fonts
+      - name: Copy license file and noto-cjk TTF fonts
         run: |
-          cp noto-cjk/Serif/LICENSE noto/LICENSE-noto-cjk-serif
-          cp noto-cjk/Serif/Variable/TTF/*.ttf noto/
-          cp noto-cjk/Serif/Variable/TTF/Subset/*.ttf noto/
-          cp noto-cjk/Sans/LICENSE noto/LICENSE-noto-cjk-sans
-          cp noto-cjk/Sans/Variable/TTF/*.ttf noto/
-          cp noto-cjk/Sans/Variable/TTF/Subset/*.ttf noto/
+          cp noto-cjk/google-fonts/*.ttf noto/
+          cp noto-cjk/Serif/LICENSE noto/LICENSE-noto-cjk
           rm -rf noto-cjk
 
       - name: Clone noto-emoji fonts repository
