@@ -4,7 +4,8 @@ This repository consists of fonts used by [xml2rfc](https://github.com/ietf-tool
 
 The following fonts are available:
 * [Noto fonts](/noto) ([Font license](https://github.com/ietf-tools/xml2rfc-fonts/raw/main/noto/LICENSE))
-* [Roboto Mono fonts](roboto_mono) ([Font license](https://github.com/ietf-tools/xml2rfc-fonts/raw/main/roboto_mono/LICENSE.txt))
+* [Noto Sans Math font](/noto/NotoSansMath-Regular.ttf) ([Font license](https://github.com/ietf-tools/xml2rfc-fonts/raw/main/noto/LICENSE-math))
+* [Roboto Mono fonts](roboto_mono) ([Font license](https://github.com/ietf-tools/xml2rfc-fonts/raw/main/roboto_mono/LICENSE))
 
 ## Updating fonts
 
